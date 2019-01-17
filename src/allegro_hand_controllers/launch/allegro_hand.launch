@@ -7,7 +7,7 @@
           ZEROS:=/path/to/zeros_file.yaml
           CONTROLLER:=grasp|pd|velsat|torque|sim
           RESPAWN:=true|false   Respawn controller if it dies.
-          KEYBOARD:=true|false  (default is true)
+          KEYBOARD:=true|false  (default is false)
           AUTO_CAN:=true|false  (if true, ignores CAN_DEVICE argument and finds the can device automagically).
           CAN_DEVICE:=/dev/pcanusb1 | /dev/pcanusbNNN  (ls -l /dev/pcan* to see open CAN devices)
           VISUALIZE:=true|false  (Launch rviz)
@@ -59,7 +59,7 @@
   <arg name="CAN_DEVICE" default="/dev/pcanusb1" />
 
   <arg name="PARAMS_DIR" default="$(find allegro_hand_parameters)" />
-  <arg name="KEYBOARD" default="true" />
+  <arg name="KEYBOARD" default="false" />
 
   <!-- yaml param files for your hand can be found in parameters/zero_files/ -->
   <arg name="ZEROS" default="$(arg PARAMS_DIR)/zero.yaml"/>

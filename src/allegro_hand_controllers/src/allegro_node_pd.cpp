@@ -180,6 +180,7 @@ void AllegroNodePD::initController(const std::string &whichHand) {
     for (int i = 0; i < DOF_JOINTS; i++) {
       ros::param::get(pGainParams[i], k_p[i]);
       ros::param::get(dGainParams[i], k_d[i]);
+      
     }
   }
   else {

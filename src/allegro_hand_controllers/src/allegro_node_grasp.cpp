@@ -2,6 +2,23 @@
 
 #include "bhand/BHand.h"
 
+// Default parameters.
+double k_p[DOF_JOINTS] =
+        {
+                // Default P Gains for PD Controller, loaded if
+                // 'gains_pd.yaml' file is not loaded.
+        		3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0,
+				3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0, 3000.0
+        };
+
+double k_d[DOF_JOINTS] =
+        {
+                // Default D Gains for PD Controller, loaded if
+                // 'gains_pd.yaml' file is not loaded.
+        		200.0, 200.0, 200.0, 200.0, 200.0, 200.0, 200.0, 200.0,
+				200.0, 200.0, 200.0, 200.0, 200.0, 200.0, 200.0, 200.0
+        };
+
 // The only topic specific to the 'grasp' controller is the envelop torque.
 const std::string ENVELOP_TORQUE_TOPIC = "allegroHand/envelop_torque";
 
@@ -84,6 +101,7 @@ void AllegroNodeGrasp::envelopTorqueCallback(const std_msgs::Float32 &msg) {
 }
 
 void AllegroNodeGrasp::computeDesiredTorque() {
+  pBHand->SetGainsEx(k_p, k_d);
   // compute control torque using Bhand library
   pBHand->SetJointPosition(current_position_filtered);
 
@@ -109,6 +127,10 @@ void AllegroNodeGrasp::initController(const std::string &whichHand) {
   pBHand->SetTimeInterval(ALLEGRO_CONTROL_TIME_INTERVAL);
   pBHand->SetMotionType(eMotionType_NONE);
 
+  pBHand->SetGainsEx(k_p, k_p);
+  printf("The new set of PD gains are added!");
+  printf("The new set of PD gains are added!");
+  printf("The new set of PD gains are added!");
   // sets initial desired pos at start pos for PD control
   for (int i = 0; i < DOF_JOINTS; i++)
     desired_position[i] = current_position[i];
@@ -118,6 +140,7 @@ void AllegroNodeGrasp::initController(const std::string &whichHand) {
   printf("-------------------------------------\n");
   printf("         Every command works.        \n");
   printf("*************************************\n");
+
 }
 
 void AllegroNodeGrasp::doIt(bool polling) {
