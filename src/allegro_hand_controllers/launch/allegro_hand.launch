@@ -77,7 +77,7 @@
         
 
   <!-- Allegro Hand controller and communication node. -->
-  <node name="allegroHand_$(arg HAND)_$(arg NUM)"
+  <node name="allegroHand_1"
         pkg="allegro_hand_controllers"
         type="allegro_node_$(arg CONTROLLER)"
         output="screen"

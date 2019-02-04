@@ -372,12 +372,27 @@ void AllegroHandDrv::_parseMessage(char cmd, char src, char des, int len, unsign
             tmppos[3] = (int) (data[6] | (data[7] << 8));
 
             lIndexBase = 4 * (src - ID_DEVICE_SUB_01);
+            std::cout<<"ID_DEVICE_SUB_01 "<<ID_DEVICE_SUB_01<<" lIndexBase "<<lIndexBase<<endl;
+            if (lIndexBase==12)
+            {
+            std::cout<<"ID_DEVICE_SUB_11 "<<tmppos[0]- 32768 <<" _encoder_offset[lIndexBase+0] "<<_encoder_offset[lIndexBase+0]<<endl;
+            std::cout<<"ID_DEVICE_SUB_21 "<<tmppos[1]- 32768 <<" _encoder_offset[lIndexBase+0] "<<_encoder_offset[lIndexBase+1]<<endl;
+            std::cout<<"ID_DEVICE_SUB_31 "<<tmppos[2]- 32768 <<" _encoder_offset[lIndexBase+0] "<<_encoder_offset[lIndexBase+2]<<endl;
+            std::cout<<"ID_DEVICE_SUB_41 "<<tmppos[3]- 32768 <<" _encoder_offset[lIndexBase+0] "<<_encoder_offset[lIndexBase+3]<<endl;                
+            }
+
 
             _curr_position[lIndexBase+0] = (double)_encoder_direction[lIndexBase+0] * (double)(tmppos[0] - 32768 - _encoder_offset[lIndexBase+0]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
             _curr_position[lIndexBase+1] = (double)_encoder_direction[lIndexBase+1] * (double)(tmppos[1] - 32768 - _encoder_offset[lIndexBase+1]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
             _curr_position[lIndexBase+2] = (double)_encoder_direction[lIndexBase+2] * (double)(tmppos[2] - 32768 - _encoder_offset[lIndexBase+2]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
             _curr_position[lIndexBase+3] = (double)_encoder_direction[lIndexBase+3] * (double)(tmppos[3] - 32768 - _encoder_offset[lIndexBase+3]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
-
+            if (lIndexBase==12)
+            {
+            std::cout<<"_curr_position[lIndexBase+0] "<<_curr_position[lIndexBase+0] <<endl;
+            std::cout<<"_curr_position[lIndexBase+1] "<<_curr_position[lIndexBase+1]<<endl;
+            std::cout<<"_curr_position[lIndexBase+2] "<<_curr_position[lIndexBase+2] <<endl;
+            std::cout<<"_curr_position[lIndexBase+3] "<<_curr_position[lIndexBase+3] <<endl;                
+            }
             _curr_position_get |= (0x01 << (src - ID_DEVICE_SUB_01));
             //ROS_INFO("get position %d: %.1f, %.1f, %.1f, %.1f", (src - ID_DEVICE_SUB_01), _curr_position[lIndexBase+0], _curr_position[lIndexBase+1], _curr_position[lIndexBase+2], _curr_position[lIndexBase+3]);
         }
