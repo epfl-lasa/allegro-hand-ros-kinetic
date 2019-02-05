@@ -4,12 +4,12 @@
   <arg name="NUM" default="0" />
   <arg name="CONTROLLER" default="grasp" />
   <arg name="RESPAWN" default="true" />
-  <arg name="VISUALIZE" default="true" />
+  <arg name="VISUALIZE" default="false" />
   <arg name="ZEROS" default="$(find allegro_hand_parameters)/zero_files/zero_SAH020BL016.yaml" />
   <arg name="AUTO_CAN" default="true" />  <!--If true, ignores CAN_DEVICE. -->
   <arg name="CAN_DEVICE" default="/dev/pcanusb1" />
   <arg name="JSP_GUI" default="false" />
-  <arg name="KEYBOARD" default="true" />
+  <arg name="KEYBOARD" default="false" />
   <arg name="GAZEBO" default="false" />  <!--use at your own risk-->
 
   <include file="$(find allegro_hand_controllers)/launch/allegro_hand.launch">
