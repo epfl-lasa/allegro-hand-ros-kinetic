@@ -373,7 +373,29 @@ void AllegroHandDrv::_parseMessage(char cmd, char src, char des, int len, unsign
 
 
             lIndexBase = 4 * (src - ID_DEVICE_SUB_01);
-
+            // if (lIndexBase == 0)
+            // {
+            //     cout << "lIdexBase+0 " << lIndexBase << " "<< tmppos[0] - 32768 << " " << _curr_position[lIndexBase + 0] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 0] << " " 
+            //         << tmppos[1] - 32768 << " " << _curr_position[lIndexBase + 1] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 1] << " "
+            //          << tmppos[2] - 32768 << " " << _curr_position[lIndexBase + 2] << " " << tmppos[2] - 32768 - _encoder_offset[lIndexBase + 2] << " "
+            //          << tmppos[3] - 32768 << " " << _curr_position[lIndexBase + 3] << " " << tmppos[3] - 32768 - _encoder_offset[lIndexBase + 3] << endl;
+            // }
+            
+            // if (lIndexBase == 4)
+            // {
+            //     cout << "lIdexBase+0 " << lIndexBase << " "<< tmppos[0] - 32768 << " " << _curr_position[lIndexBase + 0] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 0] << " " 
+            //         << tmppos[1] - 32768 << " " << _curr_position[lIndexBase + 1] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 1] << " "
+            //          << tmppos[2] - 32768 << " " << _curr_position[lIndexBase + 2] << " " << tmppos[2] - 32768 - _encoder_offset[lIndexBase + 2] << " "
+            //          << tmppos[3] - 32768 << " " << _curr_position[lIndexBase + 3] << " " << tmppos[3] - 32768 - _encoder_offset[lIndexBase + 3] << endl;
+            // }
+            
+            // if (lIndexBase == 8)
+            // {
+            //     cout << "lIdexBase+0 " << lIndexBase << " "<< tmppos[0] - 32768 << " " << _curr_position[lIndexBase + 0] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 0] << " " 
+            //         << tmppos[1] - 32768 << " " << _curr_position[lIndexBase + 1] << " " << tmppos[1] - 32768 - _encoder_offset[lIndexBase + 1] << " "
+            //          << tmppos[2] - 32768 << " " << _curr_position[lIndexBase + 2] << " " << tmppos[2] - 32768 - _encoder_offset[lIndexBase + 2] << " "
+            //          << tmppos[3] - 32768 << " " << _curr_position[lIndexBase + 3] << " " << tmppos[3] - 32768 - _encoder_offset[lIndexBase + 3] << endl;
+            // }
             _curr_position[lIndexBase+0] = (double)_encoder_direction[lIndexBase+0] * (double)(tmppos[0] - 32768 - _encoder_offset[lIndexBase+0]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
             _curr_position[lIndexBase+1] = (double)_encoder_direction[lIndexBase+1] * (double)(tmppos[1] - 32768 - _encoder_offset[lIndexBase+1]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
             _curr_position[lIndexBase+2] = (double)_encoder_direction[lIndexBase+2] * (double)(tmppos[2] - 32768 - _encoder_offset[lIndexBase+2]) * ( 333.3 / 65536.0 ) * ( M_PI/180.0);
