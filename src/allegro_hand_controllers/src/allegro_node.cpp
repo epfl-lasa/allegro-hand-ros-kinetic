@@ -7,13 +7,21 @@
 #include "allegro_hand_driver/AllegroHandDrv.h"
 
 
+// std::string jointNames[DOF_JOINTS] =
+//         {
+//                 "joint_0.0", "joint_1.0", "joint_2.0", "joint_3.0",
+//                 "joint_4.0", "joint_5.0", "joint_6.0", "joint_7.0",
+//                 "joint_8.0", "joint_9.0", "joint_10.0", "joint_11.0",
+//                 "joint_12.0", "joint_13.0", "joint_14.0", "joint_15.0"
+//         };
+
 std::string jointNames[DOF_JOINTS] =
-        {
-                "joint_0.0", "joint_1.0", "joint_2.0", "joint_3.0",
-                "joint_4.0", "joint_5.0", "joint_6.0", "joint_7.0",
-                "joint_8.0", "joint_9.0", "joint_10.0", "joint_11.0",
-                "joint_12.0", "joint_13.0", "joint_14.0", "joint_15.0"
-        };
+{
+        "joint_0", "joint_1", "joint_2", "joint_3",
+        "joint_4", "joint_5", "joint_6", "joint_7",
+        "joint_8", "joint_9", "joint_10", "joint_11",
+        "joint_12", "joint_13", "joint_14", "joint_15"
+};
 
 
 AllegroNode::AllegroNode(bool sim /* = false */) {
@@ -51,10 +59,13 @@ AllegroNode::AllegroNode(bool sim /* = false */) {
   if(!sim) {
     canDevice = new allegro::AllegroHandDrv();
     if (canDevice->init()) {
+    ROS_INFO_STREAM("canDevice is initialized.");
         usleep(3000);
     }
     else {
         delete canDevice;
+            ROS_INFO_STREAM("canoot initialize the canDevice.");
+
         canDevice = 0;
     }
   }
@@ -89,6 +100,10 @@ void AllegroNode::publishData() {
     current_joint_state.velocity[i] = current_velocity_filtered[i];
     current_joint_state.effort[i] = desired_torque[i];
   }
+  // to avoid ancoder problem for the joint5
+  if (current_joint_state.position[5] > 1.305)
+    current_joint_state.position[5] = 1.305;
+  
   joint_state_pub.publish(current_joint_state);
 }
 
@@ -107,9 +122,11 @@ void AllegroNode::updateController() {
 
   tstart = tnow;
 
+    //ROS_WARN_STREAM_THROTTLE(1,"outise the main control loop");
 
   if (canDevice)
   {
+    //ROS_WARN_STREAM_THROTTLE(1,"inside the main control loop");
     // try to update joint positions through CAN comm:
     lEmergencyStop = canDevice->readCANFrames();
 
@@ -133,10 +150,16 @@ void AllegroNode::updateController() {
                                        (0.198 * current_position[i]);
         current_velocity[i] =
                 (current_position_filtered[i] - previous_position_filtered[i]) / dt;
+                
         current_velocity_filtered[i] = (0.6 * current_velocity_filtered[i]) +
                                        (0.198 * previous_velocity[i]) +
                                        (0.198 * current_velocity[i]);
         current_velocity[i] = (current_position[i] - previous_position[i]) / dt;
+        
+        /*
+        current_velocity_filtered[i] = (0.8 * current_velocity_filtered[i]) +
+                                       (0.2 * current_velocity[i]);
+        */
       }
 
       // calculate control torque:
@@ -155,6 +178,39 @@ void AllegroNode::updateController() {
       frame++;
     }
   }
+//   else {
+
+//    for (int i = 0; i < DOF_JOINTS; i++) {
+//      previous_position[i] = current_position[i];
+//      previous_position_filtered[i] = current_position_filtered[i];
+//      previous_velocity[i] = current_velocity[i];
+//     }
+  
+
+//    // CAN bus communication.
+//    canDevice->setTorque(desired_torque);
+//    canDevice->getJointInfo(current_position);
+
+//    // Low-pass filtering.
+//    for (int i = 0; i < DOF_JOINTS; i++) {
+//     current_position_filtered[i] = (0.6 * current_position_filtered[i]) +
+//                                    (0.198 * previous_position[i]) +
+//                                    (0.198 * current_position[i]);
+//     current_velocity[i] =
+//             (current_position_filtered[i] - previous_position_filtered[i]) / dt;
+//     current_velocity_filtered[i] = (0.6 * current_velocity_filtered[i]) +
+//                                    (0.198 * previous_velocity[i]) +
+//                                    (0.198 * current_velocity[i]);
+//     current_velocity[i] = (current_position[i] - previous_position[i]) / dt;
+//    }
+
+//    computeDesiredTorque();
+
+//    publishData();
+
+//    frame++;
+
+//   }
 
   if (lEmergencyStop < 0) {
     // Stop program when Allegro Hand is switched off

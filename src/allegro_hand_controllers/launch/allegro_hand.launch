@@ -73,15 +73,30 @@
 <!-- command="$(find xacro)/xacro.py $(find allegro_hand_description)/allegro_hand_description_$(arg HAND).xacro" --> 
 
   <param name="robot_description"
-	 command="cat $(find allegro_hand_description)/allegro_hand_description_$(arg HAND).urdf" />         
-        
+	 command="cat $(find allegro_hand_description)/allegro_hand_description_$(arg HAND)_iason.urdf" />
+
+   <!--param name="robot_description"
+	 command="cat $(find allegro_hand_description)/allegro_hand_description_left_iason.urdf" /-->         
+  <!--###################################################################################  -->    
+  <param name="robot_description_semantic"
+	 command="cat $(find allegro_moveit_config)/config/allegro_hand_$(arg HAND).srdf" />
+  
+  <param name="robot_description_semantic"
+	 command="cat $(find allegro_moveit_config)/config/allegro_hand_left.srdf" />
+  
+  <rosparam command="load" file="$(find allegro_moveit_config)/config/kinematics.yaml" />
+  <rosparam command="load" file="$(find allegro_moveit_config)/config/ompl_planning.yaml" />
+  <rosparam command="load" file="$(find allegro_moveit_config)/config/joint_limits.yaml" />
+
+<!--###################################################################################  -->
+
 
   <!-- Allegro Hand controller and communication node. -->
   <node name="allegroHand_$(arg HAND)_$(arg NUM)"
         pkg="allegro_hand_controllers"
         type="allegro_node_$(arg CONTROLLER)"
         output="screen"
-        clear_params="true"
+        clear_params="false"
         respawn="$(arg RESPAWN)"
         respawn_delay="2"
         args="$(arg POLLING)" >
@@ -126,7 +141,8 @@
   <!-- Joint States (angles) to Joint Transforms -->
   <node name="jointState2tf_$(arg NUM)"
         pkg="robot_state_publisher"
-        type="state_publisher">
+        type="robot_state_publisher"
+          output="screen">
     <remap from="tf" to="allegroHand_$(arg NUM)/tf" /> 
     <remap from="joint_states" to="allegroHand_$(arg NUM)/joint_states"/>
   </node>

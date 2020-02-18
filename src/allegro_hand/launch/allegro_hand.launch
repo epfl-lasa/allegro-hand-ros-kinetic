@@ -71,8 +71,8 @@
        in two parameter names.) -->
   <param name="robot_description"
          command="$(find xacro)/xacro.py
-                  $(find allegro_hand_description)/allegro_hand_description_$(arg HAND).xacro"/>
-
+                  $(find allegro_hand_description)/bkup/allegro_hand_description_$(arg HAND)_iason.xacro"/>
+<!--+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
   <!-- Allegro Hand controller and communication node. -->
   <node name="allegroHand_$(arg HAND)_$(arg NUM)"
         pkg="allegro_hand_controllers"

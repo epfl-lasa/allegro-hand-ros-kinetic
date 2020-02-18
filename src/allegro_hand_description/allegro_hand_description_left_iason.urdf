@@ -149,7 +149,7 @@
     <limit effort="15" lower="-0.227" upper="1.618" velocity="7"/>
     <parent link="link_10"/>
     <child link="link_11"/>
-    <origin xyz="0 0 0.0384"/>
+    <origin rpy="0 0 0" xyz="0 0 0.0384"/>
     <dynamics damping="10" friction="12"/>
   </joint>
   <!-- [FINGER TIP] -->

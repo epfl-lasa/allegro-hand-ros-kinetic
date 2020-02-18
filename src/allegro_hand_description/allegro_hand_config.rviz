@@ -7,7 +7,7 @@ Panels:
         - /Global Options1
         - /Status1
       Splitter Ratio: 0.5
-    Tree Height: 674
+    Tree Height: 705
   - Class: rviz/Selection
     Name: Selection
   - Class: rviz/Tool Properties
@@ -15,7 +15,7 @@ Panels:
       - /2D Pose Estimate1
       - /2D Nav Goal1
     Name: Tool Properties
-    Splitter Ratio: 0.588679
+    Splitter Ratio: 0.588679016
   - Class: rviz/Views
     Expanded:
       - /Current View1
@@ -26,6 +26,8 @@ Panels:
     Name: Time
     SyncMode: 0
     SyncSource: ""
+Toolbars:
+  toolButtonStyle: 2
 Visualization Manager:
   Class: ""
   Displays:
@@ -35,7 +37,7 @@ Visualization Manager:
       Color: 160; 160; 164
       Enabled: true
       Line Style:
-        Line Width: 0.03
+        Line Width: 0.0299999993
         Value: Lines
       Name: Grid
       Normal Cell Count: 0
@@ -57,102 +59,106 @@ Visualization Manager:
         Expand Link Details: false
         Expand Tree: false
         Link Tree Style: Links in Alphabetic Order
-        link_0.0:
+        hand_root:
+          Alpha: 1
+          Show Axes: false
+          Show Trail: false
+        link_0:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_1.0:
+        link_1:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_10.0:
+        link_10:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_11.0:
+        link_11:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_11.0_tip:
+        link_11_tip:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_12.0:
+        link_12:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_13.0:
+        link_13:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_14.0:
+        link_14:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_15.0:
+        link_15:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_15.0_tip:
+        link_15_tip:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_2.0:
+        link_2:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_3.0:
+        link_3:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_3.0_tip:
+        link_3_tip:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_4.0:
+        link_4:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_5.0:
+        link_5:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_6.0:
+        link_6:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_7.0:
+        link_7:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_7.0_tip:
+        link_7_tip:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_8.0:
+        link_8:
           Alpha: 1
           Show Axes: false
           Show Trail: false
           Value: true
-        link_9.0:
+        link_9:
           Alpha: 1
           Show Axes: false
           Show Trail: false
@@ -173,45 +179,47 @@ Visualization Manager:
       Frame Timeout: 15
       Frames:
         All Enabled: true
-        link_0.0:
+        hand_root:
           Value: true
-        link_1.0:
+        link_0:
           Value: true
-        link_10.0:
+        link_1:
           Value: true
-        link_11.0:
+        link_10:
           Value: true
-        link_11.0_tip:
+        link_11:
           Value: true
-        link_12.0:
+        link_11_tip:
           Value: true
-        link_13.0:
+        link_12:
           Value: true
-        link_14.0:
+        link_13:
           Value: true
-        link_15.0:
+        link_14:
           Value: true
-        link_15.0_tip:
+        link_15:
           Value: true
-        link_2.0:
+        link_15_tip:
           Value: true
-        link_3.0:
+        link_2:
           Value: true
-        link_3.0_tip:
+        link_3:
           Value: true
-        link_4.0:
+        link_3_tip:
           Value: true
-        link_5.0:
+        link_4:
           Value: true
-        link_6.0:
+        link_5:
           Value: true
-        link_7.0:
+        link_6:
           Value: true
-        link_7.0_tip:
+        link_7:
           Value: true
-        link_8.0:
+        link_7_tip:
           Value: true
-        link_9.0:
+        link_8:
+          Value: true
+        link_9:
           Value: true
         palm_link:
           Value: true
@@ -221,36 +229,38 @@ Visualization Manager:
       Show Axes: false
       Show Names: false
       Tree:
-        palm_link:
-          link_0.0:
-            link_1.0:
-              link_2.0:
-                link_3.0:
-                  link_3.0_tip:
-                    {}
-          link_12.0:
-            link_13.0:
-              link_14.0:
-                link_15.0:
-                  link_15.0_tip:
-                    {}
-          link_4.0:
-            link_5.0:
-              link_6.0:
-                link_7.0:
-                  link_7.0_tip:
-                    {}
-          link_8.0:
-            link_9.0:
-              link_10.0:
-                link_11.0:
-                  link_11.0_tip:
-                    {}
+        hand_root:
+          palm_link:
+            link_0:
+              link_1:
+                link_2:
+                  link_3:
+                    link_3_tip:
+                      {}
+            link_12:
+              link_13:
+                link_14:
+                  link_15:
+                    link_15_tip:
+                      {}
+            link_4:
+              link_5:
+                link_6:
+                  link_7:
+                    link_7_tip:
+                      {}
+            link_8:
+              link_9:
+                link_10:
+                  link_11:
+                    link_11_tip:
+                      {}
       Update Interval: 0
       Value: true
   Enabled: true
   Global Options:
     Background Color: 200; 200; 200
+    Default Light: true
     Fixed Frame: palm_link
     Frame Rate: 30
   Name: root
@@ -268,22 +278,25 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.506915
+      Distance: 0.506914973
       Enable Stereo Rendering:
-        Stereo Eye Separation: 0.06
+        Stereo Eye Separation: 0.0599999987
         Stereo Focal Distance: 1
         Swap Stereo Eyes: false
         Value: false
       Focal Point:
-        X: 0.00844363
+        X: 0.0084436303
         Y: -0.0105403
-        Z: 4.22006e-10
+        Z: 4.22006013e-10
+      Focal Shape Fixed Size: true
+      Focal Shape Size: 0.0500000007
+      Invert Z Axis: false
       Name: Current View
-      Near Clip Distance: 0.01
-      Pitch: 0.520398
+      Near Clip Distance: 0.00999999978
+      Pitch: 1.02039766
       Target Frame: <Fixed Frame>
       Value: Orbit (rviz)
-      Yaw: 0.675398
+      Yaw: 0.265395492
     Saved: ~
 Window Geometry:
   Displays:
@@ -291,7 +304,7 @@ Window Geometry:
   Height: 918
   Hide Left Dock: false
   Hide Right Dock: false
-  QMainWindow State: 000000ff00000000fd00000004000000000000013c00000333fc0200000005fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006600fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000004300000333000000df00ffffff000000010000010f00000333fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000004300000333000000b800fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a00000022a00fffffffb0000000800540069006d00650100000000000004500000000000000000000002790000033300000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
+  QMainWindow State: 000000ff00000000fd00000004000000000000016a00000350fc0200000005fb0000001200530065006c0065006300740069006f006e00000001e10000009b0000006100fffffffb0000001e0054006f006f006c002000500072006f007000650072007400690065007302000001ed000001df00000185000000a3fb000000120056006900650077007300200054006f006f02000001df000002110000018500000122fb000000200054006f006f006c002000500072006f0070006500720074006900650073003203000002880000011d000002210000017afb000000100044006900730070006c006100790073010000002800000350000000d700ffffff000000010000010f00000350fc0200000003fb0000001e0054006f006f006c002000500072006f00700065007200740069006500730100000041000000780000000000000000fb0000000a00560069006500770073010000002800000350000000ad00fffffffb0000001200530065006c0065006300740069006f006e010000025a000000b200000000000000000000000200000490000000a9fc0100000001fb0000000a00560069006500770073030000004e00000080000002e10000019700000003000004a00000003efc0100000002fb0000000800540069006d00650000000000000004a00000030000fffffffb0000000800540069006d00650100000000000004500000000000000000000001ee0000035000000004000000040000000800000008fc0000000100000002000000010000000a0054006f006f006c00730100000000ffffffff0000000000000000
   Selection:
     collapsed: false
   Time:
@@ -300,6 +313,6 @@ Window Geometry:
     collapsed: false
   Views:
     collapsed: false
-  Width: 1232
-  X: 65
-  Y: -8
+  Width: 1139
+  X: 61
+  Y: 24
